@@ -6,6 +6,8 @@ const User = require("../models/user")
 const loginController = async (req, res) => {
 	console.log("login controller")
 
+	console.log(req?.body)
+
 	// try {
 	// 	// Validate request body
 	// 	const schema = Joi.object({
@@ -46,6 +48,8 @@ const loginController = async (req, res) => {
 // Register Controller
 const registerController = async (req, res) => {
 	console.log("register controller")
+	console.log(req?.body)
+
 	try {
 		// Validate request body
 		const schema = Joi.object({
@@ -77,7 +81,7 @@ const registerController = async (req, res) => {
 
 		// Create new user
 		const newUser = new User({
-			name: req.body.name,
+			fullName: req.body.name,
 			email: req.body.email,
 			phoneNumber: req.body.phoneNumber,
 			password: hashedPassword,
