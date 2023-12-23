@@ -39,8 +39,6 @@ const Register = () => {
 			})
 			const data = await res.json()
 
-			console.log(data)
-
 			if (data.success) {
 				history("/login")
 				toast.success(data?.message)
@@ -98,7 +96,7 @@ const Register = () => {
 					style={{ backgroundColor: "#369445" }}
 					className=" custom-button w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200"
 				>
-					Register
+					{loading ? "Registering..." : "Register"}
 				</Button>
 			</Form>
 		</div>
