@@ -33,3 +33,10 @@
     border-right: 2px solid #ddd;
 
 }
+.search__icon i{
+    font-size: 1.6rem;
+    padding: .5rem;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 10px 5px 10px 5px;
+}
