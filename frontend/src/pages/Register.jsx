@@ -13,6 +13,15 @@ const Register = () => {
 		const { name, address, phoneNumber, email, password, confirmPassword } =
 			e.target.elements
 
+		console.log(
+			name.value,
+			address.value,
+			phoneNumber.value,
+			email.value,
+			password.value,
+			confirmPassword.value
+		)
+
 		const newUser = {
 			name: name.value,
 			address: address.value,
@@ -29,7 +38,6 @@ const Register = () => {
 
 		try {
 			setLoading(true)
-
 			const res = await fetch("http://localhost:5000/api/v1/auth/register", {
 				method: "POST",
 				headers: {
@@ -38,27 +46,23 @@ const Register = () => {
 				body: JSON.stringify(newUser),
 			})
 			const data = await res.json()
-
-			console.log(data)
-
 			if (data.success) {
 				history("/login")
-				toast.success(data?.message)
 			} else {
-				toast.error(data?.errorMessage)
-				setError(data?.errorMessage)
+				setError(data.message)
 			}
+			toast.success(data.message)
 			setLoading(false)
 		} catch (err) {
 			console.log(err)
-			setError(err.errorMessage)
-			toast.error(err.errorMessage)
+			setError(err.message)
+			toast.error(err.message)
 			setLoading(false)
 		}
 	}
 
 	return (
-		<div className="flex flex-div items-center justify-center h-screen">
+		<div className="flex flex-div flex-col items-center justify-center h-screen">
 			<h1 className=" mb-4 text-2xl text-center">Join With Us!</h1>
 			<Form onSubmit={handleSubmit} className="w-full max-w-sm">
 				<FormGroup>
@@ -92,7 +96,7 @@ const Register = () => {
 					/>
 				</FormGroup>
 
-				{/* {error && <p className="text-red-500">{error}</p>} */}
+				{error && <p className="text-red-500">{error}</p>}
 				<Button
 					type="submit"
 					style={{ backgroundColor: "#369445" }}
