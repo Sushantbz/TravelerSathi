@@ -3,8 +3,8 @@ import ServiceCard from "./ServiceCard";
 import { Col } from "reactstrap";
 
 import weatherImg from "../assets/images/weather.png";
-import guideImg from "../assets/images/guideImg";
-import customizationImg from "../assets/images/customizationImg";
+import guideImg from "../assets/images/guide.png";
+import customizationImg from "../assets/images/customization.png";
 
 const servicesData = [
   {
@@ -28,9 +28,9 @@ const ServiceList = () => {
   return (
     <>
       {servicesData.map((item, index) => (
-        <col lg="3" key={index}>
+        <Col lg="3" key={index}>
           <ServiceCard item={item} />
-        </col>
+        </Col>
       ))}
     </>
   );

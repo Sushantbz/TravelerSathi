@@ -58,7 +58,7 @@ const Register = () => {
 	}
 
 	return (
-		<div className="flex flex-col items-center justify-center h-screen">
+		<div className="flex flex-div items-center justify-center h-screen">
 			<h1 className=" mb-4 text-2xl text-center">Join With Us!</h1>
 			<Form onSubmit={handleSubmit} className="w-full max-w-sm">
 				<FormGroup>
