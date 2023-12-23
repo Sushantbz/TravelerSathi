@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button, Form, FormGroup, Label, Input } from "reactstrap"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Register = () => {
 	const [error, setError] = useState("")
@@ -50,9 +51,12 @@ const Register = () => {
 			} else {
 				setError(data.message)
 			}
+			toast.success(data.message)
 			setLoading(false)
 		} catch (err) {
 			console.log(err)
+			setError(err.message)
+			toast.error(err.message)
 			setLoading(false)
 		}
 	}

@@ -6,7 +6,7 @@ const xss = require("xss-clean")
 const helmet = require("helmet")
 
 const corsOptions = {
-	origin: ["http://localhost:3000", "http://localhost:3001", "*"],
+	origin: ["http://localhost:3000", "http://localhost:3001", "http://*"],
 }
 
 // finding node environment
@@ -17,6 +17,16 @@ app.set("view engine", "ejs")
 app.use(xss())
 app.use(helmet())
 app.use(cors(corsOptions))
+
+// app.use(function (req, res, next) {
+// 	res.header("Access-Control-Allow-Origin", "*")
+// 	res.header(
+// 		"Access-Control-Allow-Headers",
+// 		"Origin, X-Requested-With, Content-Type, Accept"
+// 	)
+// 	next()
+// })
+
 // app.use(cors())
 
 app.use(express.json({ limit: "50mb" }))
