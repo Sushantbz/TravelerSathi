@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import heroImg from "../assets/images/hero-img01.jpg";
 import heroImg02 from "../assets/images/hero-img02.jpg";
 import heroVideo from "../assets/images/hero-video.mp4";
-import worldImg from "../assets/images/world.png";
+import worldImg from "../assets/images/world.gif";
 import Subtitle from "../shared/Subtitle";
 
 import SearchBar from "../shared/SearchBar";
@@ -24,15 +24,12 @@ const Home = () => {
                 </div>
                 <h1>
                   {" "}
-                  Travelling Opens the door to creating{" "}
-                  <span className="highlight">memories</span>
+                  Welcome to the Gateway of Unforgettable{" "}
+                  <span className="highlight">Adventures!</span>
                 </h1>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae ullam maxime voluptatibus et sunt, voluptas,
-                  delectus facilis officia laudantium accusamus voluptate
-                  mollitia? Deserunt facere, aut accusamus ipsa quas iste
-                  debitis.
+                Dreaming of a getaway that perfectly matches your desires? You're in the right place! At TravelerSathi, 
+                we believe that every journey should be as unique as the traveler.
                 </p>
               </div>
             </Col>
