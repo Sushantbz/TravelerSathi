@@ -67,13 +67,13 @@ const registerController = async (req, res) => {
 		})
 		const { error } = schema.validate(req.body)
 		if (error) {
-			return res.status(400).json({ message: error.details[0].message })
+			return res.status(400).json({ errorMessage: error.details[0].message })
 		}
 
 		// Check if user already exists
 		const existingUser = await User.findOne({ email: req.body.email })
 		if (existingUser) {
-			return res.status(409).json({ message: "User already exists" })
+			return res.status(409).json({ errorMessage: "User already exists" })
 		}
 
 		// Encrypt password
@@ -95,7 +95,7 @@ const registerController = async (req, res) => {
 		return res.status(201).json({ message: "Registration successful" })
 	} catch (error) {
 		console.error(error)
-		return res.status(500).json({ message: "Internal server error" })
+		return res.status(500).json({ errorMessage: "Internal server error" })
 	}
 }
 

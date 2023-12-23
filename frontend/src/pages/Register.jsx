@@ -13,15 +13,6 @@ const Register = () => {
 		const { name, address, phoneNumber, email, password, confirmPassword } =
 			e.target.elements
 
-		console.log(
-			name.value,
-			address.value,
-			phoneNumber.value,
-			email.value,
-			password.value,
-			confirmPassword.value
-		)
-
 		const newUser = {
 			name: name.value,
 			address: address.value,
@@ -38,6 +29,7 @@ const Register = () => {
 
 		try {
 			setLoading(true)
+
 			const res = await fetch("http://localhost:5000/api/v1/auth/register", {
 				method: "POST",
 				headers: {
@@ -46,17 +38,21 @@ const Register = () => {
 				body: JSON.stringify(newUser),
 			})
 			const data = await res.json()
+
+			console.log(data)
+
 			if (data.success) {
 				history("/login")
+				toast.success(data?.message)
 			} else {
-				setError(data.message)
+				toast.error(data?.errorMessage)
+				setError(data?.errorMessage)
 			}
-			toast.success(data.message)
 			setLoading(false)
 		} catch (err) {
 			console.log(err)
-			setError(err.message)
-			toast.error(err.message)
+			setError(err.errorMessage)
+			toast.error(err.errorMessage)
 			setLoading(false)
 		}
 	}
@@ -96,7 +92,7 @@ const Register = () => {
 					/>
 				</FormGroup>
 
-				{error && <p className="text-red-500">{error}</p>}
+				{/* {error && <p className="text-red-500">{error}</p>} */}
 				<Button
 					type="submit"
 					style={{ backgroundColor: "#369445" }}
