@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
 const Joi = require("joi")
-const User = require("../models/user")
+const { User } = require("../models/user")
 
 // Login Controller
 const loginController = async (req, res) => {
@@ -47,9 +47,6 @@ const loginController = async (req, res) => {
 
 // Register Controller
 const registerController = async (req, res) => {
-	console.log("register controller")
-	console.log(req?.body)
-
 	try {
 		// Validate request body
 		const schema = Joi.object({
@@ -67,13 +64,17 @@ const registerController = async (req, res) => {
 		})
 		const { error } = schema.validate(req.body)
 		if (error) {
-			return res.status(400).json({ message: error.details[0].message })
+			return res
+				.status(400)
+				.json({ success: false, errorMessage: error.details[0].message })
 		}
 
 		// Check if user already exists
 		const existingUser = await User.findOne({ email: req.body.email })
 		if (existingUser) {
-			return res.status(409).json({ message: "User already exists" })
+			return res
+				.status(409)
+				.json({ success: false, errorMessage: "User already exists" })
 		}
 
 		// Encrypt password
@@ -92,10 +93,14 @@ const registerController = async (req, res) => {
 		await newUser.save()
 
 		// Return success response
-		return res.status(201).json({ message: "Registration successful" })
+		return res
+			.status(201)
+			.json({ success: true, message: "Registration successful" })
 	} catch (error) {
 		console.error(error)
-		return res.status(500).json({ message: "Internal server error" })
+		return res
+			.status(500)
+			.json({ success: false, errorMessage: "Internal server error" })
 	}
 }
 
