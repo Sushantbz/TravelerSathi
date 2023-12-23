@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
@@ -40,7 +43,9 @@ a {
 ul {
   list-style: none;
 }
-
+.custom-button:hover {
+  background-color: #194886;
+}
 .primary__btn {
   background: var(--secondary-color) !important;
   border: none !important;
@@ -58,7 +63,7 @@ ul {
 }
 .secondary__btn {
   background: transparent !important;
-  color: #0b2727 !important;
+  color: #369445 !important;
   border: none !important;
   font-weight: 500 !important;
 }
