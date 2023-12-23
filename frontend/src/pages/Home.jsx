@@ -66,6 +66,19 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+
+      {/*------------------ featured tour section start--------------*/}
+      <section>
+        <Container>
+          <Row>
+            <dev lg='12' className="mb-5">
+              <Subtitle subtitle={'Explorer'}/>
+              <h2 className="featured__tour-title"></h2>
+            </dev>
+          </Row>
+        </Container>
+      </section>
+      {/*------------------ featured tour section end--------------*/}
     </>
   );
 };
