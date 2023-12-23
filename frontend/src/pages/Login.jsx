@@ -102,8 +102,8 @@ const Login = () => {
 					<div className="mt-3">
 						<NavLink href="/forgot-password">Forgot Password?</NavLink>
 					</div>
-					<div className="mt-2">
-						<NavLink href="/signup">
+					<div className="mt-2 text-blue-600">
+						<NavLink href="/register">
 							Don't have an account? Sign up here
 						</NavLink>
 					</div>
