@@ -1,0 +1,38 @@
+{
+	"name": "travelersathi-backend",
+	"version": "1.0.0",
+	"description": "Backend with Express.js for travelersathi website.",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Sushantbz/travellersathi.git"
+	},
+	"keywords": [
+		"travel",
+		"travelersathi",
+		"friend",
+		"guide",
+		"booking",
+		"tickets",
+		"tourism",
+		"expeditions",
+		"tour"
+	],
+	"author": "Pradeep Pandey, Pujan Parajuli, Sandesh G.C., Sushant Banjade",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Sushantbz/travellersathi/issues"
+	},
+	"homepage": "https://github.com/Sushantbz/travellersathi#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+		"nodemon": "^3.0.2"
+	}
+}
