@@ -1,86 +1,116 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button, NavLink } from 'reactstrap';
+import React, { useState } from "react"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router"
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	FormGroup,
+	Label,
+	Input,
+	Button,
+	NavLink,
+} from "reactstrap"
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+	const [showPassword, setShowPassword] = useState(false)
+	const [error, setError] = useState("")
+	const [loading, setLoading] = useState(false)
+	const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		const { email, password } = e.target.elements
 
-    // Email validation
-    if (!email.trim()) {
-      setError('Please enter your email');
-      return;
-    }
+		const user = {
+			email: email.value,
+			password: password.value,
+		}
 
-    // Password validation
-    if (!password.trim()) {
-      setError('Please enter your password');
-      return;
-    }
+		if (Object.values(user).some((el) => el === "")) {
+			setError("Please fill all fields")
+			return
+		}
 
-    // Add additional validation logic as needed
+		try {
+			setLoading(true)
 
-    // Reset error state
-    setError('');
+			const res = await fetch("http://localhost:5000/api/v1/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(user),
+			})
+			const data = await res.json()
 
-    // Add your authentication logic here
-    console.log('Login clicked');
-  };
+			if (data.success) {
+				navigate("/")
+				toast.success(data?.message)
+			} else {
+				toast.error(data?.message)
+				setError(data?.message)
+			}
+			setLoading(false)
+		} catch (err) {
+			console.log(err)
+			setError(err.message)
+			toast.error(err.message)
+			setLoading(false)
+		}
+	}
 
-  return (
-    <Container>
-      <Row className="mt-5">
-        <Col md={{ size: 6, offset: 3 }}>
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label for="email">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="password">Password</Label>
-              <Input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                id="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button
-                type="button"
-                color="link"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? 'Hide' : 'Show'}
-              </Button>
-            </FormGroup>
-            {error && <div className="text-danger">{error}</div>}
-            <Button color="primary" block>
-              Login
-            </Button>
-          </Form>
-          <div className="mt-3">
-            <NavLink href="/forgot-password">Forgot Password?</NavLink>
-          </div>
-          <div  className="mt-2">
-            <NavLink href="/signup">Don't have an account? Sign up here</NavLink>
-          </div>
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+	return (
+		<Container>
+			<Row className="mt-5">
+				<Col md={{ size: 6, offset: 3 }}>
+					<Form onSubmit={handleSubmit}>
+						<FormGroup>
+							<Label for="email">Email</Label>
+							<Input
+								type="email"
+								name="email"
+								id="email"
+								placeholder="Enter your email"
+								required
+							/>
+						</FormGroup>
+						<FormGroup>
+							<Label for="password">Password</Label>
+							<Input
+								type={showPassword ? "text" : "password"}
+								name="password"
+								id="password"
+								placeholder="Enter your password"
+								required
+							/>
+							<Button
+								type="button"
+								color="link"
+								className="password-toggle"
+								onClick={() => setShowPassword(!showPassword)}
+							>
+								{showPassword ? "Hide Password" : "Show Password"}
+							</Button>
+						</FormGroup>
+						{error && <div className="text-danger">{error}</div>}
+						<Button color="primary" block>
+							Login
+						</Button>
+					</Form>
+					<div className="mt-3">
+						<NavLink href="/forgot-password">Forgot Password?</NavLink>
+					</div>
+					<div className="mt-2 text-blue-600">
+						<NavLink href="/register">
+							Don't have an account? Sign up here
+						</NavLink>
+					</div>
+				</Col>
+			</Row>
+		</Container>
+	)
+}
 
-export default Login;
+export default Login
