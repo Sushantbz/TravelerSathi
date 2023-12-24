@@ -1,16 +1,17 @@
 const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
-const app = express()
 const xss = require("xss-clean")
 const helmet = require("helmet")
+const { NODE_ENV } = require("../constants/env")
+const app = express()
 
 const corsOptions = {
 	origin: ["http://localhost:3000", "http://localhost:3001", "http://*"],
 }
 
 // finding node environment
-require("dotenv").config({ path: "../.env" })
+require("dotenv").config({ path: "./.env" }) // The path is relative to the root of the project
 
 // setup middlewares
 app.set("view engine", "ejs")
@@ -30,7 +31,7 @@ app.use(cors(corsOptions))
 // app.use(cors())
 
 app.use(express.json({ limit: "50mb" }))
-process.env.NODE_ENV === "development" && app.use(morgan("dev"))
+NODE_ENV === "development" && app.use(morgan("dev"))
 
 app.use(express.urlencoded({ extended: true, limit: "50mb" }))
 app.use("/api", require("../routes"))
@@ -45,7 +46,7 @@ app.get("*", (req, res) => {
 })
 
 // logging for development mode
-if (process.env.NODE_ENV == "development") {
+if (NODE_ENV == "development") {
 	console.log("(development mode)\nMorgan is running...")
 }
 

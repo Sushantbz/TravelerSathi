@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt")
 const Joi = require("joi")
+const jwt = require("jsonwebtoken")
 const { User } = require("../models/user")
+const { JWT_SECRET } = require("../constants/env")
 
 // Login Controller
 const loginController = async (req, res) => {
@@ -34,11 +36,24 @@ const loginController = async (req, res) => {
 				.json({ success: false, message: "Invalid password" })
 		}
 
-		// Generate and send access token
-		// TODO: Implement access token generation and sending
+		console.log(JWT_SECRET)
+		// Create token
+		const token = jwt.sign({ _id: user._id, email: user.email }, JWT_SECRET, {
+			expiresIn: "1h",
+		})
 
-		// Return success response
-		return res.status(200).json({ success: true, message: "Login successful" })
+		return res.status(200).json({
+			success: true,
+			message: "Login successful",
+			token,
+			user: {
+				fullName: user.fullName,
+				email: user.email,
+				phoneNumber: user.phoneNumber,
+				address: user.address,
+				_id: user._id.toString(),
+			},
+		})
 	} catch (error) {
 		console.error(error)
 		return res
@@ -52,7 +67,7 @@ const registerController = async (req, res) => {
 	try {
 		// Validate request body
 		const schema = Joi.object({
-			name: Joi.string().required(),
+			fullName: Joi.string().required(),
 			email: Joi.string().email().required(),
 			phoneNumber: Joi.string().required(),
 			password: Joi.string().required(),
@@ -99,7 +114,7 @@ const registerController = async (req, res) => {
 			.status(201)
 			.json({ success: true, message: "Registration successful" })
 	} catch (error) {
-		console.error(error)
+		// console.error(error)
 		return res
 			.status(500)
 			.json({ success: false, message: "Internal server error" })
