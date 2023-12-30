@@ -2,15 +2,14 @@ const http = require("http")
 const dotenv = require("dotenv")
 const app = require("./src/config/app")
 const { connectDB } = require("./src/config/db")
-
-dotenv.config({ path: "./.env" })
+const { MONGODB_URL, PORT, HOST } = require("./src/constants/env")
 
 // initializing server
-const host = process.env.HOST || "localhost"
-const port = process.env.PORT || 5000
+const host = HOST
+const port = PORT
 
 async function start() {
-	const mongoURL = process.env.MONGODB_URL
+	const mongoURL = MONGODB_URL
 
 	try {
 		///  CONNECTING TO DATABASE  ///
