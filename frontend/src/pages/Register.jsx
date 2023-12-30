@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 const Register = () => {
+	const [showPassword, setShowPassword] = useState(false)
 	const [error, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const history = useNavigate()
@@ -43,14 +44,14 @@ const Register = () => {
 				history("/login")
 				toast.success(data?.message)
 			} else {
-				toast.error(data?.errorMessage)
-				setError(data?.errorMessage)
+				toast.error(data?.message)
+				setError(data?.message)
 			}
 			setLoading(false)
 		} catch (err) {
 			console.log(err)
-			setError(err.errorMessage)
-			toast.error(err.errorMessage)
+			setError(err.message)
+			toast.error(err.message)
 			setLoading(false)
 		}
 	}
@@ -77,18 +78,31 @@ const Register = () => {
 				</FormGroup>
 				<FormGroup>
 					<Label for="password">Password</Label>
-					<Input type="password" name="password" id="password" required />
+					<Input
+						type={showPassword ? "text" : "password"}
+						name="password"
+						id="password"
+						required
+					/>
 				</FormGroup>
 
 				<FormGroup>
 					<Label for="confirmPassword">Confirm Password</Label>
 					<Input
-						type="confirmPassword"
+						type={showPassword ? "text" : "password"}
 						name="confirmPassword"
 						id="confirmPassword"
 						required
 					/>
 				</FormGroup>
+				<Button
+					type="button"
+					color="link"
+					className="password-toggle"
+					onClick={() => setShowPassword(!showPassword)}
+				>
+					{showPassword ? "Hide Password" : "Show Password"}
+				</Button>
 
 				{/* {error && <p className="text-red-500">{error}</p>} */}
 				<Button
