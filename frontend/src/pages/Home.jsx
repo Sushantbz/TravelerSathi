@@ -8,6 +8,8 @@ import worldImg from "../assets/images/world.gif";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
 import ServiceList from "../services/ServiceList";
+import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
+
 
 
 
@@ -71,14 +73,26 @@ const Home = () => {
       <section>
         <Container>
           <Row>
-            <dev lg='12' className="mb-5">
-              <Subtitle subtitle={'Explorer'}/>
-              <h2 className="featured__tour-title"></h2>
-            </dev>
+            <div lg='12' className="mb-5">
+              
+              <h2 className="featured__tour-title">Your title here</h2>
+            </div>
           </Row>
         </Container>
       </section>
       {/*------------------ featured tour section end--------------*/}
+      <section>
+        <Container>
+          <Row>
+            <div lg='12' className="mb-5">
+            
+              <h2 className="featured__tour-title">Our featured tours</h2>
+                </div>
+            <FeaturedTourList />
+          </Row>
+        </Container>
+
+      </section>
     </>
   );
 };
