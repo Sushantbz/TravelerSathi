@@ -57,10 +57,10 @@ const Home = () => {
       <section>
         <Container>
           <Row>
-            <div lg="3">
+            <Col lg="3">
               <h5 className="services__subtitle">What we serve</h5>
               <h2 className="services__title">We offer our Best Services</h2>
-            </div>
+            </Col>
             <ServiceList />
           </Row>
         </Container>
@@ -70,36 +70,16 @@ const Home = () => {
       <section>
         <Container>
           <Row>
-            <div lg="12" className="mb-5">
+            <Col lg="12" className="mb-5">
               <Subtitle subtitle={"Explorer"} />
-              <h2 className="featured__tour-title"></h2>
-            </div>
+              <h2 className="featured__tour-title">Our Featured Tours</h2>
+            </Col>
+            <FeaturedTourList /> 
           </Row>
         </Container>
       </section>
       {/*------------------ featured tour section end--------------*/}
 
-      {/*------------------ featured tour section start--------------*/}
-      <section>
-        <Container>
-          <Row>
-            <div lg="12" className="mb-5">
-              <h2 className="featured__tour-title">Your title here</h2>
-            </div>
-          </Row>
-        </Container>
-      </section>
-      {/*------------------ featured tour section end--------------*/}
-      <section>
-        <Container>
-          <Row>
-            <div lg="12" className="mb-5">
-              <h2 className="featured__tour-title">Our featured tours</h2>
-            </div>
-            <FeaturedTourList />
-          </Row>
-        </Container>
-      </section>
     </>
   );
 };
