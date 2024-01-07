@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 
 const Register = () => {
 	const [showPassword, setShowPassword] = useState(false)
-	const [error, setError] = useState("")
+	const [, setError] = useState("")
 	const [loading, setLoading] = useState(false)
 	const history = useNavigate()
 
