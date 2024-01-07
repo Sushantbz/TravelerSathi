@@ -1,5 +1,4 @@
 
-=======
 import React from "react"
 import "../styles/home.css"
 import { Container, Row, Col } from "reactstrap"
@@ -10,7 +9,6 @@ import worldImg from "../assets/images/world.gif"
 import Subtitle from "../shared/Subtitle"
 import SearchBar from "../shared/SearchBar"
 import ServiceList from "../services/ServiceList"
->>>>>>> 8c718dcc4b2c3fa58d1271cba95b5cd66df3eed4
 
 const Home = () => {
 	return (
@@ -32,7 +30,7 @@ const Home = () => {
 								</h1>
 								<p>
 									Dreaming of a getaway that perfectly matches your desires?
-									You're in the right place! At TravelerSathi, we believe that
+									You're in the right place! At TravelerSati, we believe that
 									every journey should be as unique as the traveler.
 								</p>
 							</div>
@@ -80,11 +78,9 @@ const Home = () => {
 				</Container>
 			</section>
 			{/*------------------ featured tour section end--------------*/}
-		</>
-	)
-}
+		
 
-<<<<<<< HEAD
+
       {/*------------------ featured tour section start--------------*/}
       <section>
         <Container>
@@ -104,16 +100,13 @@ const Home = () => {
             
               <h2 className="featured__tour-title">Our featured tours</h2>
                 </div>
-            <FeaturedTourList />
+            {/* <FeaturedTourList /> */}
           </Row>
         </Container>
 
       </section>
     </>
   );
-};
+  };
 
 export default Home;
-=======
-export default Home
->>>>>>> 8c718dcc4b2c3fa58d1271cba95b5cd66df3eed4
