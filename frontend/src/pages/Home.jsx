@@ -104,7 +104,7 @@ const Home = () => {
               <div className="counter__wrapper d-flex align-items-center gap-5">
                 <div className="counter__box">
                   <span> 5k+</span>
-                  <h6> Successful Trip</h6>
+                  <h6> Successfull Trip</h6>
                 </div>
                 <div className="counter__box">
                   <span> 500+</span>
@@ -156,8 +156,9 @@ const Home = () => {
       </section> */}
       {/*------------------ testimonial section end  --------------*/}
 
+
     </>
   );
-  };
+};
 
 export default Home;
